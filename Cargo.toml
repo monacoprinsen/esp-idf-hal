@@ -23,8 +23,8 @@ riscv-ulp-hal = []
 nb = "0.1.2"
 embedded-hal = "=1.0.0-alpha.8"
 embedded-hal-0-2 = { package = "embedded-hal", version = "0.2.7", features = ["unproven"] }
-embedded-svc = { version = "0.22", default-features = false, git = "https://github.com/esp-rs/embedded-svc", branch = "next" }
 #embedded-svc = { version = "0.22.0", default-features = false }
+embedded-svc = { version = "0.22", default-features = false, git = "https://github.com/esp-rs/embedded-svc", branch = "next" }
 esp-idf-sys = { version = "0.31.4", optional = true, default-features = false, features = ["native"] }
 edge-executor = { version = "0.1", optional = true, default-features = false }
 #critical-section = { version = "1.0.0-alpha.2", git = "https://github.com/embassy-rs", optional = true, features = ["custom-impl"] }

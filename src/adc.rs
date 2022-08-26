@@ -9,6 +9,7 @@ use crate::riscv_ulp_hal::sys::*;
 #[cfg(all(esp32, not(feature = "riscv-ulp-hal")))]
 use crate::hall;
 
+#[cfg(not(feature = "riscv-ulp-hal"))]
 use crate::gpio::ADCPin;
 
 #[cfg(not(feature = "riscv-ulp-hal"))]

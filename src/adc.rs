@@ -129,18 +129,20 @@ pub mod config {
 }
 
 #[cfg(not(feature = "riscv-ulp-hal"))]
-pub struct ChannelDriver<'d, T: ADCPin, ATTEN> {
+pub struct AdcChannelDriver<'d, T: ADCPin, ATTEN> {
     _pin: PeripheralRef<'d, T>,
     _atten: PhantomData<ATTEN>,
 }
 
 #[cfg(not(feature = "riscv-ulp-hal"))]
-impl<'d, T: ADCPin, ATTEN> ChannelDriver<'d, T, ATTEN>
+impl<'d, T: ADCPin, ATTEN> AdcChannelDriver<'d, T, ATTEN>
 where
     ATTEN: Attenuation<T::Adc>,
 {
     #[inline]
-    pub fn new(pin: impl Peripheral<P = T> + 'd) -> Result<ChannelDriver<'d, T, ATTEN>, EspError> {
+    pub fn new(
+        pin: impl Peripheral<P = T> + 'd,
+    ) -> Result<AdcChannelDriver<'d, T, ATTEN>, EspError> {
         crate::into_ref!(pin);
 
         crate::gpio::rtc_reset_pin(pin.pin())?;
@@ -159,7 +161,9 @@ where
 }
 
 #[cfg(not(feature = "riscv-ulp-hal"))]
-impl<'d, T: ADCPin, ATTEN> embedded_hal_0_2::adc::Channel<ATTEN> for ChannelDriver<'d, T, ATTEN> {
+impl<'d, T: ADCPin, ATTEN> embedded_hal_0_2::adc::Channel<ATTEN>
+    for AdcChannelDriver<'d, T, ATTEN>
+{
     type ID = u8;
 
     fn channel() -> Self::ID {

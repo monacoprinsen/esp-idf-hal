@@ -15,6 +15,7 @@ use crate::gpio::ADCPin;
 #[cfg(not(feature = "riscv-ulp-hal"))]
 use crate::peripheral::{Peripheral, PeripheralRef};
 
+#[cfg(not(feature = "riscv-ulp-hal"))]
 pub type AdcConfig = config::Config;
 
 pub trait Adc: Send {
